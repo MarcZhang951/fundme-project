@@ -1,7 +1,7 @@
 const { task } = require("hardhat/config")
 
-// 第四课：用两个账户向 FundMe 转账并查看余额
-// 不传 --addr 时使用 hardhat-deploy 记录的 FundMe 地址
+// Fund FundMe from two accounts and print the balances
+// Without --addr, uses the FundMe address recorded by hardhat-deploy
 task("interact-fundme", "fund FundMe with two accounts and print balances")
     .addOptionalParam("addr", "FundMe contract address")
     .addOptionalParam("amount", "ETH amount per account", "0.5")

@@ -1,10 +1,10 @@
-// MockV3Aggregator 参数：8 位小数，ETH 价格 3000 USD
+// MockV3Aggregator parameters: 8 decimals, ETH price of 3000 USD
 const DECIMAL = 8
 const INITIAL_ANSWER = 300000000000
 const developmentChains = ["hardhat", "localhost"]
-// FundMe 的众筹窗口（秒）
+// FundMe funding window (seconds)
 const LOCK_TIME = 180
-// 测试网部署时等待的区块确认数（Etherscan 验证前需要）
+// Block confirmations to wait for on testnets (required before Etherscan verification)
 const CONFIRMATIONS = 5
 
 const networkConfig = {

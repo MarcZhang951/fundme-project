@@ -2,8 +2,8 @@ const { network, ethers } = require("hardhat")
 const { developmentChains, CONFIRMATIONS } = require("../helper-hardhat-config")
 const { verify } = require("../utils/verify")
 
-// 第三课：FundTokenERC20 依赖 FundMe 的 fundersToAmount 来铸造通证，
-// 部署后需要由 FundMe 的 owner 调用 setErc20Addr 授权它修改 fundersToAmount
+// FundTokenERC20 mints tokens based on FundMe.fundersToAmount.
+// After deployment, the FundMe owner calls setErc20Addr so the token can update fundersToAmount.
 module.exports = async ({ getNamedAccounts, deployments }) => {
     const { firstAccount } = await getNamedAccounts()
     const { deploy, log } = deployments

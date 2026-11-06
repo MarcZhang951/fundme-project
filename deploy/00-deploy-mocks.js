@@ -1,7 +1,7 @@
 const { network } = require("hardhat")
 const { DECIMAL, INITIAL_ANSWER, developmentChains } = require("../helper-hardhat-config")
 
-// 本地网络没有 Chainlink 喂价合约，部署 MockV3Aggregator 代替
+// Local networks have no Chainlink price feed, so deploy MockV3Aggregator instead
 module.exports = async ({ getNamedAccounts, deployments }) => {
     const { log } = deployments
     if (!developmentChains.includes(network.name)) {

@@ -1,13 +1,13 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-/// @title FundToken 手写的简易通证（未实现 ERC20 标准）
+/// @title FundToken: a minimal handwritten token (not ERC20-compliant)
 /// @author Marc Zhang
 contract FundToken {
-    // 1. 通证的名字
-    // 2. 通证的简称
-    // 3. 通证的发行数量
-    // 4. owner地址
+    // 1. token name
+    // 2. token symbol
+    // 3. total supply
+    // 4. owner address
     // 5. balance address => uint256
     string public tokenName;
     string public tokenSymbol;
@@ -21,20 +21,20 @@ contract FundToken {
         owner = msg.sender;
     }
 
-    // mint: 获取通证
+    // mint: create tokens for the caller
     function mint(uint256 amountToMint) public {
         balances[msg.sender] += amountToMint;
         totalSupply += amountToMint;
     }
 
-    // transfer: transfer 通证
+    // transfer: move tokens to another address
     function transfer(address payee, uint256 amount) public {
         require(balances[msg.sender] >= amount, "You do not have enough balance to transfer");
         balances[msg.sender] -= amount;
         balances[payee] += amount;
     } 
 
-    // balanceOf: 查看某一个地址的通证数量
+    // balanceOf: get the token balance of an address
     function balanceOf(address addr) public view returns(uint256) {
         return balances[addr];
     }

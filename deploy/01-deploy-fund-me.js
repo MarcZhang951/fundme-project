@@ -16,7 +16,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
         confirmations = CONFIRMATIONS
     }
 
-    // 重新部署时需删除 deployments 目录，或加 --reset
+    // To redeploy, delete the deployments directory or pass --reset
     const fundMe = await deploy("FundMe", {
         from: firstAccount,
         args: [LOCK_TIME, dataFeedAddr],

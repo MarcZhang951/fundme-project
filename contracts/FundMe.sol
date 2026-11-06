@@ -3,12 +3,12 @@ pragma solidity ^0.8.20;
 
 import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
 
-// 1. 创建一个收款函数
-// 2. 记录投资人并且查看
-// 3. 在锁定期内，达到目标值，生产商可以提款
-// 4. 在锁定期内，没有达到目标值，投资人在锁定期以后退款
+// 1. Accept funds through a payable function
+// 2. Record funders and make their contributions queryable
+// 3. If the target is reached within the lock period, the owner can withdraw
+// 4. If the target is not reached within the lock period, funders can refund after it ends
 
-/// @title FundMe 众筹合约：锁定期内达到目标 owner 可提款，否则投资人可退款
+/// @title FundMe: time-locked crowdfunding; the owner withdraws if the target is reached, otherwise funders get refunds
 /// @author Marc Zhang
 contract FundMe {
     mapping(address => uint256) public fundersToAmount;
@@ -32,7 +32,7 @@ contract FundMe {
     event RefundByFunder(address, uint256);
 
     constructor(uint256 _lockTime, address dataFeedAddr) {
-        // dataFeedAddr: 本地网络为 MockV3Aggregator，测试网为 Chainlink ETH/USD 喂价合约
+        // dataFeedAddr: MockV3Aggregator on local networks, the Chainlink ETH/USD price feed on testnets
         dataFeed = AggregatorV3Interface(dataFeedAddr);
         owner = msg.sender;
         deploymentTimestamp = block.timestamp;

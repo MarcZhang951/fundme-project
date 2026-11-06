@@ -10,7 +10,7 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY
 const PRIVATE_KEY_1 = process.env.PRIVATE_KEY_1
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || ""
 
-// 没有配置私钥时也能在本地 hardhat 网络编译、测试
+// Allows compiling and testing on the local hardhat network without private keys configured
 const sepoliaAccounts = [PRIVATE_KEY, PRIVATE_KEY_1].filter(Boolean)
 
 /** @type import('hardhat/config').HardhatUserConfig */
